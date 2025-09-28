@@ -1,0 +1,426 @@
+services:
+
+##EcomApp-Containers
+
+# Postgres Data Base
+
+  postgres:
+    container_name: postgres
+    image: postgres:latest
+    mem_limit: 700m
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: orderdb
+      PGDATA: /data/postgres
+    env_file:
+      - .env
+    volumes:
+       - postgres:/data/postgres
+       - ./init-multi-postgres-databases.sh:/docker-entrypoint-initdb.d/init-multi-postgres-databases.sh
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    ports:
+      - "5432:5432"
+    networks:
+      - backend
+    restart: unless-stopped
+
+# PGadmin
+
+  pgadmin:
+    container_name: pgadmin
+    image: dpage/pgadmin4
+    mem_limit: 700m
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-pgadmin4@pgadmin.org}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-admin}
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+    volumes:
+      - ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+      - pgadmin:/var/lib/pgadmin
+     
+    ports:
+      - "5050:80"
+    networks:
+      - backend
+    restart: unless-stopped
+
+    #MYSQL Data Base
+
+  mysql:
+    container_name: mysql
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: productdb
+      MYSQL_USER: productdb
+      MYSQL_PASSWORD: root
+      MYSQL_DATABASE: productdb
+    volumes:
+        - mysql_data:/temp/mysql
+    ports:
+      - "3306:3306"
+    networks:
+      - backend
+    restart: unless-stopped
+
+ #MYSQL WorkBench
+
+  mysql-workbench:
+    image: phpmyadmin/phpmyadmin
+    container_name: mysql-workbench
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+      MYSQL_ROOT_PASSWORD: productdb
+    ports:
+      - "8484:80"
+    restart: unless-stopped
+    depends_on:
+      - mysql
+    networks:
+      - backend
+
+#MONGO Data Base
+
+  mongo:
+    container_name: mongo
+    image: mongo
+    environment:
+       MONGO_INITDB_DATABASE: userdb
+    volumes:
+       - mongo_data:/data/db # Persist MongoDB data
+       - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+    ports:
+      - "27017:27017"
+    networks:
+      - backend
+    restart: unless-stopped
+
+# Keycloak 
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:26.3.4
+    container_name: keycloak
+    command: start
+    environment:
+      KC_HOSTNAME: localhost
+      KC_HOSTNAME_PORT: 8096
+      KC_HOSTNAME_STRICT_BACKCHANNEL: false
+      KC_HTTP_ENABLED: true
+      KC_HOSTNAME_STRICT_HTTPS: false
+      KC_HEALTH_ENABLED: true
+      KC_BOOTSTRAP_ADMIN_USERNAME: admin
+      KC_BOOTSTRAP_ADMIN_PASSWORD: admin
+      KC_DB: postgres
+      KC_DB_URL: jdbc:postgresql://postgres/keycloakdb
+      KC_DB_USERNAME: postgres
+      KC_DB_PASSWORD: root
+    ports:
+      - 8096:8080
+    restart: always
+    networks:
+      - backend
+    depends_on:
+      - postgres
+
+# Zookeeper
+
+  zookeeper:
+    image: confluentinc/cp-zookeeper:latest
+    hostname: zookeeper
+    container_name: zookeeper
+    ports:
+      - "2181:2181"
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    networks:
+      - backend
+      
+# Kafka
+
+  kafka:
+    image: confluentinc/cp-kafka:latest
+    hostname: kafka
+    container_name: kafka
+    ports:
+      - 9092:9092
+    depends_on:
+      - zookeeper
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT,CONTROLLER:PLAINTEXT
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:29092,PLAINTEXT_HOST://localhost:9092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_PROCESS_ROLES: broker,controller
+      KAFKA_NODE_ID: 1
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@kafka:29093
+      KAFKA_LISTENERS: PLAINTEXT://kafka:29092,CONTROLLER://kafka:29093,PLAINTEXT_HOST://0.0.0.0:9092
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_LOG_DIRS: /tmp/kraft-combined-logs
+      CLUSTER_ID: MkU3OEVBNTcwNTJENDM2Qk
+    networks:
+      - backend
+
+# Kafka UI
+
+  kafka-ui:
+    image: provectuslabs/kafka-ui:latest
+    container_name: kafka-ui
+    ports:
+      - "8089:8080"
+    depends_on:
+      - kafka
+    environment:
+      KAFKA_CLUSTERS_0_NAME: local-kafka
+      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka:29092 # Internal Kafka broker address
+      KAFKA_CLUSTERS_0_ZOOKEEPER: zookeeper:2181 # Zookeeper address (optional for newer Kafka versions)
+      KAFKA_CLUSTERS_0_JMXPORT: 9999 # Optional, if JMX is enabled on Kafka
+    networks:
+      - backend
+
+# Zipkin
+
+  zipkin:
+    image: openzipkin/zipkin
+    container_name: zipkin
+    ports:
+      - 9411:9411
+    networks:
+     - backend
+
+# Redis
+
+  redis:
+    image: redis:latest
+    container_name: redis
+    ports:
+      - 6379:6379
+    networks:
+     - backend
+
+
+# Rabbitmq
+
+  rabbitmq:
+    image: rabbitmq:4-management
+    container_name: rabbitmq
+    ports:
+      - 5672:5672
+      - 15672:15672
+
+#EcomApp-ConfigServer
+#Spring Boot Config Server
+  config-server:
+    build:
+      context: ../../1_ConfigServer
+      #context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8086:8086" 
+    environment:
+      SPRING_CLOUD_CONFIG_SERVER_NATIVE_SEARCH_LOCATIONS: /config
+      SPRING_RABBITMQ_HOST: rabbitmq 
+      SPRING_RABBITMQ_PORT: 5672
+      SPRING_RABBITMQ_USERNAME: guest
+      SPRING_RABBITMQ_PASSWORD: guest
+    networks:
+      - backend
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "http://localhost:8086/actuator/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+    volumes:
+    - ../../1_ConfigServer/src/main/resources/config:/config
+     #- ./src/main/resources/config:/config
+
+
+#EcomApp-EurekaServer
+#Spring Boot Eureka Server
+  eureka-server-service:
+    build:
+      context: ../../2_EurekaServer
+      #context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8761:8761"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker      
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "http://localhost:8761/actuator/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - backend
+    restart: unless-stopped
+    depends_on:     
+      - config-server
+
+#EcomApp-User
+#Spring Boot User Service
+  user-service:
+    build:
+      context: ../../3_User 
+      #context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8092:8092" 
+    networks:
+      - backend
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "http://localhost:8092/actuator/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+    environment:
+     SPRING_DATA_MONGODB_URI: mongodb://mongo:27017/userdb
+     AUTHENTICATION_DATABASE_HOST: mongo
+     AUTHENTICATION_DATABASE_USER: admin 
+     AUTHENTICATION_DATABASE_DB: userdb
+     EUREKA_CLIENT_SERVICEURL: http://eureka-server-service:8761/eureka/
+     KEYCLOAK_USERNAME: sai22
+     KEYCLOAK_PASSWORD: sai22
+     KEYCLOAK_SERVER_URL: http://keycloak:8080
+     KEYCLOAK_REALM: My-Ecommerce-Application
+     KEYCLOAK_CLIENT_ID: admin-cli
+     KEYCLOAK_CLIENT_UID: d61b3251-48ea-4228-8e6c-a92f9b8511f1
+     SPRING_PROFILES_ACTIVE: docker
+    depends_on:           
+      - config-server
+
+#EcomApp-Product
+#Spring Boot Product Service
+  product-service:
+    build:
+      context: ../../4_Product
+      #context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8093:8093" 
+    networks:
+      - backend
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "http://localhost:8093/actuator/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    environment:
+      MYSQL_ROOT_PASSWORD: productdb
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/productdb
+      SPRING_DATASOURCE_USERNAME: productdb
+      SPRING_DATASOURCE_PASSWORD: root
+      SPRING_JPA_HIBERNATE_DDL-AUTO: create
+      SPRING_PROFILES_ACTIVE: docker
+      EUREKA_CLIENT_SERVICEURL: http://eureka-server-service:8761/eureka/
+    depends_on:          
+      - config-server
+
+
+#EcomApp-Order
+# Spring Boot Order service
+
+  order-service:
+    build:
+      context: ../../5_Order 
+      #context: . 
+      dockerfile: Dockerfile 
+    ports:
+        - "8094:8094" 
+    networks:
+      - backend
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "http://localhost:8094/actuator/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/orderdb
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: root
+      SPRING_JPA_HIBERNATE_DDL_AUTO: create   
+      SPRING_JPA_DATABASE: POSTGRESQL
+      SPRING_JPA_SHOW_SQL: true
+      SPRING_PROFILES_ACTIVE: docker
+      EUREKA_CLIENT_SERVICEURL: http://eureka-server-service:8761/eureka/
+      SPRING_RABBITMQ_HOST: rabbitmq 
+      SPRING_RABBITMQ_PORT: 5672
+      SPRING_RABBITMQ_USERNAME: guest
+      SPRING_RABBITMQ_PASSWORD: guest
+      KAFKA_BINDING_BROKERS: kafka:9092
+    depends_on:           
+      - config-server
+
+#EcomApp-Notification
+# Spring Boot Notification Service
+  notification-service:
+    build:
+      #context: .
+      context: ../../6_Notification 
+      dockerfile: Dockerfile 
+    ports:
+        - "8095:8095" 
+    networks:
+      - backend
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "http://localhost:8095/actuator/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    environment:
+      EUREKA_CLIENT_SERVICEURL: http://eureka-server-service:8761/eureka/  
+      SPRING_PROFILES_ACTIVE: docker
+      KAFKA_BINDING_BROKERS: kafka:9092
+    depends_on:      
+      - config-server
+
+
+#EcomApp-ApiGateway
+# Spring Boot API Gateway service
+
+  api-gateway-service:
+    build:
+      context: ../../7_ApiGateway
+      #context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8090:8090" 
+    environment:
+      SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_ISSUER-URI: http://keycloak:8080/realms/My-Ecommerce-Application
+      SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_JWK_SET-URI: 
+      EUREKA_CLIENT_SERVICEURL: http://eureka-server-service:8761/eureka/
+      SPRING_PROFILES_ACTIVE: docker
+    networks:
+      - backend
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "http://localhost:8090/actuator/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    depends_on:
+      - config-server
+
+networks:
+  backend:
+    driver: bridge 
+
+volumes:
+  postgres:
+  pgadmin:
+  mysql_data:
+  mongo_data:
