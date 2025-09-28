@@ -1,0 +1,24 @@
+#spring.application.name=eureka-server
+
+
+server:
+  port: 8761
+  
+#server:
+#  port: 8091
+
+eureka:
+ client:
+  register-with-eureka: false
+  fetch-registry: false
+
+management:
+ endpoints:
+    web:
+     exposure:
+        include: "*"
+ shutdown:
+    access: unrestricted
+ tracing:
+    sampling:
+      probability: 1.0

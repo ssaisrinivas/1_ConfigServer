@@ -1,0 +1,134 @@
+spring:
+ datasource:
+   url: ${SPRING_DATASOURCE_URL}
+   username: ${SPRING_DATASOURCE_USERNAME}
+   password: ${SPRING_DATASOURCE_PASSWORD}
+ jpa:
+  database: ${SPRING_JPA_DATABASE}
+  show-sql:  ${SPRING_JPA_SHOW_SQL}
+  hibernate:
+   ddl-auto: ${SPRING_JPA_HIBERNATE_DDL_AUTO}
+   database-platform: org.hibernate.dialect.PostgreSQLDialect
+   
+
+##RabbitMq-Connection
+ rabbitmq:
+   host: ${SPRING_RABBITMQ_HOST}
+   port: ${SPRING_RABBITMQ_PORT}
+   username: ${SPRING_RABBITMQ_USERNAME}
+   password: ${SPRING_RABBITMQ_PASSWORD}
+   
+
+#Cloud-Stream-Bindings
+ cloud:
+  stream:
+    bindings:
+      createOrder-out-0:
+        destination: order.exchange
+        content-type: application/json
+
+##Cloud-Stream-Bindings-RabbitMQ
+    rabbit:
+       bindings: 
+         createOrder-out-0:
+           producer: 
+             routing-key-expression: "'order.tracking'"
+
+#Cloud-Stream-Bindings-Kafka
+
+    kafka:
+     binder:
+      brokers: ${KAFKA_BINDING_BROKERS}
+
+
+management:
+   endpoints:
+     web:
+      exposure:
+       include: "*" 
+   endpoint:
+    health:
+     show-details: always	   
+   health:
+    circuitbreakers:
+      enabled: true
+   tracing:
+     sampling:
+       probability: 1.0
+   zipkin:
+    tracing:
+     endpoint: ${ZIPKIN_URL:http://zipkin:9411/api/v2/spans}
+     connect-timeout: 1s
+     encoding: json 
+     read-timeout: 10s
+
+
+server:
+ port: 8094
+ 
+eureka:
+ client:
+   serviceUrl: 
+     defaultZone: ${EUREKA_CLIENT_SERVICEURL}
+   register-with-eureka: true
+   fetch-registry: true
+  
+logging:
+ level:
+  root: INFO
+ file:
+  name: logs/${spring.application.name}.log
+ logback:
+   rollingpolicy:
+     max-file-size: 5MB
+     max-history: 1
+
+##RabbitMQ
+
+rabbitmq:
+  exchange:
+    name: order.exchange
+  queue:
+    name: order.queue
+  routing:
+    key: order.tracking
+
+
+# Circuite breaker 
+
+resilience4j:
+ circuitbreaker:
+   instances:
+     ecomServiceBreaker:
+        registerHealthIndicator: true
+        slidingWindowType: count_based
+        slidingWindowSize: 10
+        minimumNumberOfCalls: 10
+        failureRateThreshold: 70
+        waitDurationInOpenState: 5s
+        permittedNumberOfCallsInHalfOpenState: 2
+        slowCallRateThreshold: 50
+        slowCallDurationThreshold: 10000
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+ retry:
+   instances:   
+     retryBreaker: 
+       maxAttempts: 5
+       waitDuration: 5000ms 
+ ratelimiter:
+   instances:
+    rateBreaker:
+     timeout-duration: 0
+     limit-refresh-period: 4s
+     limit-for-period: 10
+
+
+# url: ${URL}
+# username: ${USERNAME}
+# password: ${PASSWORD}
+#jpa:
+# database: ${DATABASE}
+# show-sql:  ${SHOW-SQL}
+# hibernate:
+#   ddl-auto: ${DDL-AUTO}
+# database-platform: ${DATABASE-PLATFORM}

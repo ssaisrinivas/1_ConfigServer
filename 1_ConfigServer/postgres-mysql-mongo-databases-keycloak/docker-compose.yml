@@ -1,0 +1,133 @@
+services:
+# Postgres Data Base
+  postgres:
+    container_name: postgres
+    image: postgres:latest
+    mem_limit: 700m
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: orderdb
+      PGDATA: /data/postgres
+    env_file:
+      - .env
+    volumes:
+       - postgres:/data/postgres
+       - ./init-multi-postgres-databases.sh:/docker-entrypoint-initdb.d/init-multi-postgres-databases.sh
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    ports:
+      - "5432:5432"
+    networks:
+      - backend
+    restart: unless-stopped
+
+# PGadmin
+
+  pgadmin:
+    container_name: pgadmin
+    image: dpage/pgadmin4
+    mem_limit: 700m
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-pgadmin4@pgadmin.org}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-admin}
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+    volumes:
+      - ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+      - pgadmin:/var/lib/pgadmin
+     
+    ports:
+      - "5050:80"
+    networks:
+      - backend
+    restart: unless-stopped
+
+    #MYSQL Data Base
+  mysql:
+    container_name: mysql
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: productdb
+      MYSQL_USER: productdb
+      MYSQL_PASSWORD: root
+      MYSQL_DATABASE: productdb
+    volumes:
+        - mysql_data:/temp/mysql
+    ports:
+      - "3306:3306"
+    networks:
+      - backend
+    restart: unless-stopped
+
+ #MYSQL WorkBench
+
+  mysql-workbench:
+    image: phpmyadmin/phpmyadmin
+    container_name: mysql-workbench
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+      MYSQL_ROOT_PASSWORD: productdb
+    ports:
+      - "8484:80"
+    restart: unless-stopped
+    depends_on:
+      - mysql
+    networks:
+      - backend
+
+#MONGO Data Base
+
+  mongo:
+    container_name: mongo
+    image: mongo
+    environment:
+       MONGO_INITDB_DATABASE: userdb
+    volumes:
+       - mongo_data:/data/db # Persist MongoDB data
+       - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+    ports:
+      - "27017:27017"
+    networks:
+      - backend
+    restart: unless-stopped
+
+# Keycloak 
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:26.3.4
+    container_name: keycloak
+    command: start
+    environment:
+      KC_HOSTNAME: localhost
+      KC_HOSTNAME_PORT: 8096
+      KC_HOSTNAME_STRICT_BACKCHANNEL: false
+      KC_HTTP_ENABLED: true
+      KC_HOSTNAME_STRICT_HTTPS: false
+      KC_HEALTH_ENABLED: true
+      KC_BOOTSTRAP_ADMIN_USERNAME: admin
+      KC_BOOTSTRAP_ADMIN_PASSWORD: admin
+      KC_DB: postgres
+      KC_DB_URL: jdbc:postgresql://postgres/keycloakdb
+      KC_DB_USERNAME: keycloakdb
+      KC_DB_PASSWORD: root
+    ports:
+      - 8096:8080
+    restart: always
+    depends_on:
+      - postgres
+    networks:
+      - backend
+
+networks:
+  backend:
+    driver: bridge 
+
+volumes:
+  postgres:
+  pgadmin:
+  mysql_data:
+  mongo_data:

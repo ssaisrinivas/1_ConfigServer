@@ -1,0 +1,127 @@
+spring:
+ datasource:
+   url: jdbc:postgresql://localhost:5432/orderdb
+   username: postgres
+#   username: orderdb
+   password: root
+ jpa:
+  database: POSTGRESQL
+  show-sql:  true
+  hibernate:
+   ddl-auto: create
+   database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+##RabbitMq-Connection
+# rabbitmq:
+#   host: localhost
+#   port: 5672
+#   username: guest
+#   password: guest
+
+#Cloud-Stream-Bindings
+ cloud:
+  stream:
+    bindings:
+      createOrder-out-0:
+        destination: order.exchange
+        content-type: application/json
+
+##Cloud-Stream-Bindings-RabbitMQ
+#    rabbit:
+#       bindings: 
+#         createOrder-out-0:
+#           producer: 
+#             routing-key-expression: "'order.tracking'"
+
+#Cloud-Stream-Bindings-Kafka
+
+    kafka:
+     binder:
+      brokers: localhost:9092
+
+management:
+   endpoints:
+     web:
+      exposure:
+       include: "*" 
+   endpoint:
+    health:
+     show-details: always
+   health:
+    circuitbreakers:
+      enabled: true
+   tracing:
+     sampling:
+       probability: 1.0 
+
+
+
+server:
+ port: 8094
+ 
+eureka:
+ client:
+   serviceUrl: 
+     defaultZone: http://localhost:8761/eureka
+   register-with-eureka: true
+   fetch-registry: true
+  
+logging:
+ level:
+  root: INFO
+ file:
+  name: logs/${spring.application.name}.log
+ logback:
+   rollingpolicy:
+     max-file-size: 5MB
+     max-history: 1
+
+##RabbitMQ
+#
+#rabbitmq:
+#  exchange:
+#    name: order.exchange
+#  queue:
+#    name: order.queue
+#  routing:
+#    key: order.tracking
+
+
+# Circuite breaker 
+
+resilience4j:
+ circuitbreaker:
+   instances:
+     ecomServiceBreaker:
+        registerHealthIndicator: true
+        slidingWindowType: count_based
+        slidingWindowSize: 10
+        minimumNumberOfCalls: 10
+        failureRateThreshold: 70
+        waitDurationInOpenState: 5s
+        permittedNumberOfCallsInHalfOpenState: 2
+        slowCallRateThreshold: 50
+        slowCallDurationThreshold: 10000
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+ retry:
+   instances:   
+     retryBreaker: 
+       maxAttempts: 5
+       waitDuration: 5000ms 
+ ratelimiter:
+   instances:
+    rateBreaker:
+     timeout-duration: 0
+     limit-refresh-period: 4s
+     limit-for-period: 10
+
+
+# url: ${URL}
+# username: ${USERNAME}
+# password: ${PASSWORD}
+#jpa:
+# database: ${DATABASE}
+# show-sql:  ${SHOW-SQL}
+# hibernate:
+#   ddl-auto: ${DDL-AUTO}
+# database-platform: ${DATABASE-PLATFORM}

@@ -1,0 +1,102 @@
+spring:
+ data:
+  mongodb:
+   database: ${AUTHENTICATION_DATABASE_DB}
+   host: ${AUTHENTICATION_DATABASE_HOST}
+   port: 27017
+   authentication-database: ${AUTHENTICATION_DATABASE_USER}
+
+logging:
+ level:
+   org:
+     springframework:
+          data:
+           mongodb:
+              core:
+                MongoTemplate: DEBUG   
+ file:
+  name: logs/${spring.application.name}.log
+
+ logback:
+   rollingpolicy:
+     max-filesize: 5MB
+     max-history: 1
+
+
+#Keycloak details
+
+keycloak:
+ admin:
+  username: ${KEYCLOAK_USERNAME}
+  password: ${KEYCLOAK_PASSWORD}
+  server-url: ${KEYCLOAK_SERVER_URL}
+  realm: ${KEYCLOAK_REALM}
+  client-id: ${KEYCLOAK_CLIENT_ID}
+  client-uid: ${KEYCLOAK_CLIENT_UID}
+
+# rabbitmq:
+#    host: localhost
+#    port: 5672
+#    username: guest
+#    password: guest
+#       
+#management:
+# endpoints:
+#   web:
+#    exposure:
+#     include: "*"
+
+server:
+  port: 8092
+  
+eureka:
+ client:
+  serviceUrl: 
+    defaultZone: ${EUREKA_CLIENT_SERVICEURL}
+  register-with-eureka: true
+  fetch-registry: true
+ 
+ 
+management:
+   endpoints:
+     web:
+      exposure:
+       include: "*" 
+   endpoint:
+    health:
+     show-details: always	   
+   health:
+    circuitbreakers:
+      enabled: true
+   tracing:
+     sampling:
+       probability: 1.0
+   zipkin:
+    tracing:
+     endpoint: ${ZIPKIN_URL:http://zipkin:9411/api/v2/spans}
+     connect-timeout: 1s
+     encoding: json 
+     read-timeout: 10s
+
+
+#database: ${DATABASE}
+#  host: ${HOST}
+#  port: ${PORT}
+#  authentication-database: ${AUTHENTICATION-DATABASE}
+
+# Circuite breaker 
+
+resilience4j:
+ circuitbreaker:
+   instances:
+     ecomServiceBreaker:
+        registerHealthIndicator: true
+        slidingWindowType: count_based
+        slidingWindowSize: 10
+        minimumNumberOfCalls: 10
+        failureRateThreshold: 70
+        waitDurationInOpenState: 5s
+        permittedNumberOfCallsInHalfOpenState: 2
+        slowCallRateThreshold: 50
+        slowCallDurationThreshold: 10000
+        automaticTransitionFromOpenToHalfOpenEnabled: true

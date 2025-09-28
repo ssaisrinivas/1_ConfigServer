@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+
+#Spring Boot Config Server
+  config-server:
+    build:
+#      context: ../../1_ConfigServer
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8086:8086" 
+    networks:
+      - backend
+    restart: unless-stopped
+    environment:
+     SPRING_CLOUD_CONFIG_SERVER_NATIVE_SEARCH_LOCATIONS: /config
+    volumes:
+#    - ../../1_ConfigServer/src/main/resources/config:/config
+     - ./src/main/resources/config:/config
+
+networks:
+  backend:
+    driver: bridge 

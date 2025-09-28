@@ -1,0 +1,73 @@
+spring:
+
+##RabbitMq-Connection
+ rabbitmq:
+   host: ${SPRING_RABBITMQ_HOST}
+   port: ${SPRING_RABBITMQ_PORT}
+   username: ${SPRING_RABBITMQ_USERNAME}
+   password: ${SPRING_RABBITMQ_PASSWORD}
+
+#Cloud-Stream-Bindings
+ cloud:
+
+#Cloud-Stream-Bindings-RabbitMq-Kafka
+  function:
+    definition: orderCreated
+  stream:
+    function:
+       definition: orderCreated
+    bindings:
+      orderCreated-in-0:
+        destination: order.exchange
+        group: notification-group 
+        content-type: application/json
+
+#Cloud-Stream-Bindings-Kafka
+
+    kafka:
+     binder:
+      brokers: ${KAFKA_BINDING_BROKERS}
+
+server:
+ port: 8095
+ 
+logging:
+ level:
+  root: INFO
+ file:
+  name: logs/${spring.application.name}.log
+ logback:
+   rollingpolicy:
+     max-file-size: 5MB
+     max-history: 1
+
+##RabbitMQ
+
+rabbitmq:
+  exchange:
+    name: order.exchange
+  queue:
+    name: order.queue
+  routing:
+    key: order.tracking
+    
+management:
+   endpoints:
+     web:
+      exposure:
+       include: "*" 
+   endpoint:
+    health:
+     show-details: always	   
+   health:
+    circuitbreakers:
+      enabled: true
+   tracing:
+     sampling:
+       probability: 1.0
+   zipkin:
+    tracing:
+     endpoint: ${ZIPKIN_URL:http://zipkin:9411/api/v2/spans}
+     connect-timeout: 1s
+     encoding: json 
+     read-timeout: 10s

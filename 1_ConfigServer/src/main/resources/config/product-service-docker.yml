@@ -1,0 +1,91 @@
+spring:
+ datasource:
+  url: ${SPRING_DATASOURCE_URL}
+  username: ${SPRING_DATASOURCE_USERNAME}
+  password: ${SPRING_DATASOURCE_PASSWORD}
+ jpa:
+  hibernate:
+   ddl-auto: ${SPRING_JPA_HIBERNATE_DDL-AUTO}
+   properties:
+    format_sql: true
+  show-sql: true
+  
+# rabbitmq:
+#  host: localhost
+#  port: 5672
+#  username: guest
+#  password: guest
+#    
+#management:
+#   endpoints:
+#     web:
+#      exposure:
+#       include: "*"
+
+server:
+ port: 8093  
+
+eureka:
+ client:
+   serviceUrl: 
+    defaultZone: ${EUREKA_CLIENT_SERVICEURL}
+   register-with-eureka: true
+   fetch-registry: true
+   
+logging:
+ level:
+  root: INFO
+ file:
+   name: logs/${spring.application.name}.log
+ logback:
+  rollingpolicy:
+   max-file-size: 5MB
+   max-history: 1
+ 
+management:
+   endpoints:
+     web:
+      exposure:
+       include: "*" 
+   endpoint:
+    health:
+     show-details: always	   
+   health:
+    circuitbreakers:
+      enabled: true
+   tracing:
+     sampling:
+       probability: 1.0
+   zipkin:
+    tracing:
+     endpoint: ${ZIPKIN_URL:http://zipkin:9411/api/v2/spans}
+     connect-timeout: 1s
+     encoding: json 
+     read-timeout: 10s
+
+# Circuite breaker 
+
+resilience4j:
+ circuitbreaker:
+   instances:
+     ecomServiceBreaker:
+        registerHealthIndicator: true
+        slidingWindowType: count_based
+        slidingWindowSize: 10
+        minimumNumberOfCalls: 10
+        failureRateThreshold: 70
+        waitDurationInOpenState: 5s
+        permittedNumberOfCallsInHalfOpenState: 2
+        slowCallRateThreshold: 50
+        slowCallDurationThreshold: 10000
+        automaticTransitionFromOpenToHalfOpenEnabled: true 
+
+#url: ${URL}
+# username: ${USERNAME}
+# password: ${PASSWORD}
+# 
+#jpa:
+# hibernate:
+#  ddl-auto: ${DDL-AUTO}
+# properties:
+#  format_sql: ${FORMAT-SQL}

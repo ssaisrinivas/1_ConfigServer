@@ -1,0 +1,119 @@
+#spring:
+# cloud:
+#   gateway:
+#      server:
+#        webflux:
+#          routes: 
+#             - id: user-service
+#               uri: lb://USER-SERVICE
+#               predicates: 
+#                 - Path=/api/users/**
+#             - id: product-service
+#               uri: lb://PRODUCT-SERVICE
+#               predicates: 
+#                 - Path=/api/products/**
+#             - id: order-service
+#               uri: lb://ORDER-SERVICE
+#               predicates: 
+#                 - Path=/api/cart/**, /api/orders/**
+
+#Spring OAuth2 Security Keycloak
+spring:
+ security:
+  oauth2:
+   resourceserver:
+    jwt:
+     issuer-uri: ${SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_ISSUER_URI}
+     jwk-set-uri: ${SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_JWK_SET_URI}
+
+eureka:
+  client:
+   serviceUrl:
+    defaultZone: ${EUREKA_CLIENT_SERVICEURL}
+   register-with-eureka: true
+   fetch-registry: true
+
+server:
+  port: 8090
+  
+logging:
+# level:
+#   root: INFO
+#   org.springframework.cloud.gateway.route.RouteDefinitionLocator: INFO
+#   org.springframework.cloud.gateway: TRACE
+ file:
+     name: logs/${spring.application.name}.log
+ logback:
+    rollingpolicy:
+     max-file-size: 5MB
+     max-history: 1
+
+management:
+   endpoints:
+     web:
+      exposure:
+       include: "*" 
+   endpoint:
+    health:
+     show-details: always
+   health:
+    circuitbreakers:
+      enabled: true
+   tracing:
+     sampling:
+       probability: 1.0
+   zipkin:
+    tracing:
+     endpoint: ${ZIPKIN_URL:http://zipkin:9411/api/v2/spans}
+     connect-timeout: 1s
+     encoding: json 
+     read-timeout: 10s
+
+# Circuite breaker 
+
+resilience4j:
+ circuitbreaker:
+   instances:
+     ecomServiceBreaker:
+        registerHealthIndicator: true
+        slidingWindowType: count_based
+        slidingWindowSize: 10
+        minimumNumberOfCalls: 10
+        failureRateThreshold: 70
+        waitDurationInOpenState: 5s
+        permittedNumberOfCallsInHalfOpenState: 2
+        slowCallRateThreshold: 50
+        slowCallDurationThreshold: 10000
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+
+#server.port=8090
+#spring.application.name= ApiGateway
+#
+#spring.cloud.gateway.server.webflux.routes[0].id=user-service
+#spring.cloud.gateway.server.webflux.routes[0].uri=http://localhost:8092
+#spring.cloud.gateway.server.webflux.routes[0].predicates[0]=Path=/api/users/**
+# 
+#spring.cloud.gateway.server.webflux.routes[1].id=product-service
+#spring.cloud.gateway.server.webflux.routes[1].uri=http://localhost:8093
+#spring.cloud.gateway.server.webflux.routes[1].predicates[0]=Path=/api/products/**
+#
+#spring.cloud.gateway.server.webflux.routes[2].id=order-service
+#spring.cloud.gateway.server.webflux.routes[2].uri=http://localhost:8094
+#spring.cloud.gateway.server.webflux.routes[2].predicates[0]=Path=/api/cart/**, /api/orders/**
+#
+#
+#eureka.client.serviceUrl.defaultZone=http://localhost:8761/eureka/
+#eureka.client.register-with-eureka: true
+#eureka.client.fetch-registry: true
+
+
+#             - id: eureka-server
+#               uri: http://localhost:8761
+#               predicates: 
+#                  - Path=/eureka/main
+#               filters:
+#                  - SetPath=/
+#             - id: eureka-server-static
+#               url: http://localhost:8761
+#               predicates:
+#                  - Path=/eureka/**

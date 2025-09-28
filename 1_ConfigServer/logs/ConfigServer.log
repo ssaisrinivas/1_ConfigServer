@@ -1,0 +1,118 @@
+2025-09-25T11:49:40.600+05:30  INFO 15980 --- [ConfigServer] [main] c.s.springboot.ConfigServerApplication   : Starting ConfigServerApplication using Java 17.0.11 with PID 15980 (D:\Eclipse-23-24\SpringBoot\EmbarkX\1_ConfigServer\target\classes started by ssais in D:\Eclipse-23-24\SpringBoot\EmbarkX\1_ConfigServer)
+2025-09-25T11:49:40.613+05:30  INFO 15980 --- [ConfigServer] [main] c.s.springboot.ConfigServerApplication   : The following 1 profile is active: "native"
+2025-09-25T11:49:42.408+05:30  INFO 15980 --- [ConfigServer] [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=8f4691b3-af9b-3ae8-b920-e2fe721df0ff
+2025-09-25T11:49:43.038+05:30  INFO 15980 --- [ConfigServer] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8086 (http)
+2025-09-25T11:49:43.057+05:30  INFO 15980 --- [ConfigServer] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-09-25T11:49:43.057+05:30  INFO 15980 --- [ConfigServer] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.44]
+2025-09-25T11:49:43.149+05:30  INFO 15980 --- [ConfigServer] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-09-25T11:49:43.149+05:30  INFO 15980 --- [ConfigServer] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2418 ms
+2025-09-25T11:49:44.769+05:30  INFO 15980 --- [ConfigServer] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2025-09-25T11:49:44.927+05:30  INFO 15980 --- [ConfigServer] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8086 (http) with context path '/'
+2025-09-25T11:49:45.152+05:30  INFO 15980 --- [ConfigServer] [main] c.s.springboot.ConfigServerApplication   : Started ConfigServerApplication in 5.618 seconds (process running for 7.557)
+2025-09-25T11:49:45.762+05:30  INFO 15980 --- [ConfigServer] [RMI TCP Connection(4)-127.0.0.1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-09-25T11:49:45.762+05:30  INFO 15980 --- [ConfigServer] [RMI TCP Connection(4)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-09-25T11:49:45.765+05:30  INFO 15980 --- [ConfigServer] [RMI TCP Connection(4)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
+2025-09-25T11:50:00.499+05:30  INFO 15980 --- [ConfigServer] [http-nio-8086-exec-1] o.s.c.c.s.e.NativeEnvironmentRepository  : Adding property source: Config resource 'class path resource [config/user-service.yml]' via location 'classpath:/config/'
+2025-09-25T11:50:35.145+05:30  INFO 15980 --- [ConfigServer] [RMI TCP Connection(6)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2025-09-25T11:50:35.148+05:30  INFO 15980 --- [ConfigServer] [RMI TCP Connection(6)-127.0.0.1] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-09-25T11:50:35.260+05:30  INFO 15980 --- [ConfigServer] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-09-25T12:44:20.358+05:30  INFO 8780 --- [ConfigServer] [main] c.s.springboot.ConfigServerApplication   : Starting ConfigServerApplication using Java 17.0.11 with PID 8780 (D:\Eclipse-23-24\SpringBoot\EmbarkX\EcomApp-Containers\1_ConfigServer\target\classes started by ssais in D:\Eclipse-23-24\SpringBoot\EmbarkX\EcomApp-Containers\1_ConfigServer)
+2025-09-25T12:44:20.361+05:30  INFO 8780 --- [ConfigServer] [main] c.s.springboot.ConfigServerApplication   : The following 1 profile is active: "native"
+2025-09-25T12:44:21.668+05:30  INFO 8780 --- [ConfigServer] [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=8f4691b3-af9b-3ae8-b920-e2fe721df0ff
+2025-09-25T12:44:21.998+05:30  INFO 8780 --- [ConfigServer] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8086 (http)
+2025-09-25T12:44:22.012+05:30  INFO 8780 --- [ConfigServer] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-09-25T12:44:22.013+05:30  INFO 8780 --- [ConfigServer] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.44]
+2025-09-25T12:44:22.094+05:30  INFO 8780 --- [ConfigServer] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-09-25T12:44:22.095+05:30  INFO 8780 --- [ConfigServer] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1648 ms
+2025-09-25T12:44:23.341+05:30  INFO 8780 --- [ConfigServer] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2025-09-25T12:44:23.440+05:30  INFO 8780 --- [ConfigServer] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8086 (http) with context path '/'
+2025-09-25T12:44:23.631+05:30  INFO 8780 --- [ConfigServer] [main] c.s.springboot.ConfigServerApplication   : Started ConfigServerApplication in 4.171 seconds (process running for 5.436)
+2025-09-25T12:44:24.048+05:30  INFO 8780 --- [ConfigServer] [RMI TCP Connection(4)-127.0.0.1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-09-25T12:44:24.049+05:30  INFO 8780 --- [ConfigServer] [RMI TCP Connection(4)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-09-25T12:44:24.051+05:30  INFO 8780 --- [ConfigServer] [RMI TCP Connection(4)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2025-09-25T12:45:41.877+05:30  INFO 8780 --- [ConfigServer] [http-nio-8086-exec-1] o.s.c.c.s.e.NativeEnvironmentRepository  : Adding property source: Config resource 'class path resource [config/eureka-server-service.yml]' via location 'classpath:/config/'
+2025-09-25T12:49:24.291+05:30  INFO 8780 --- [ConfigServer] [http-nio-8086-exec-4] o.s.c.c.s.e.NativeEnvironmentRepository  : Adding property source: Config resource 'class path resource [config/product-service.yml]' via location 'classpath:/config/'
+2025-09-25T12:49:59.443+05:30  INFO 8780 --- [ConfigServer] [RMI TCP Connection(11)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2025-09-25T12:49:59.443+05:30  INFO 8780 --- [ConfigServer] [RMI TCP Connection(11)-127.0.0.1] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-09-25T12:49:59.552+05:30  INFO 8780 --- [ConfigServer] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-09-25T13:34:33.563+05:30  INFO 13980 --- [ConfigServer] [main] c.s.springboot.ConfigServerApplication   : Starting ConfigServerApplication using Java 17.0.11 with PID 13980 (D:\Eclipse-23-24\SpringBoot\EmbarkX\EcomApp-Containers\1_ConfigServer\target\classes started by ssais in D:\Eclipse-23-24\SpringBoot\EmbarkX\EcomApp-Containers\1_ConfigServer)
+2025-09-25T13:34:33.570+05:30  INFO 13980 --- [ConfigServer] [main] c.s.springboot.ConfigServerApplication   : The following 1 profile is active: "native"
+2025-09-25T13:34:36.537+05:30  INFO 13980 --- [ConfigServer] [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=8f4691b3-af9b-3ae8-b920-e2fe721df0ff
+2025-09-25T13:34:37.315+05:30  INFO 13980 --- [ConfigServer] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8086 (http)
+2025-09-25T13:34:37.356+05:30  INFO 13980 --- [ConfigServer] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-09-25T13:34:37.357+05:30  INFO 13980 --- [ConfigServer] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.44]
+2025-09-25T13:34:37.487+05:30  INFO 13980 --- [ConfigServer] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-09-25T13:34:37.488+05:30  INFO 13980 --- [ConfigServer] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3566 ms
+2025-09-25T13:34:39.769+05:30  INFO 13980 --- [ConfigServer] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2025-09-25T13:34:39.897+05:30  INFO 13980 --- [ConfigServer] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8086 (http) with context path '/'
+2025-09-25T13:34:40.235+05:30  INFO 13980 --- [ConfigServer] [main] c.s.springboot.ConfigServerApplication   : Started ConfigServerApplication in 9.467 seconds (process running for 11.726)
+2025-09-25T13:34:47.363+05:30  INFO 13980 --- [ConfigServer] [RMI TCP Connection(4)-127.0.0.1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-09-25T13:34:47.363+05:30  INFO 13980 --- [ConfigServer] [RMI TCP Connection(4)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-09-25T13:34:47.366+05:30  INFO 13980 --- [ConfigServer] [RMI TCP Connection(4)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2025-09-25T13:36:04.739+05:30  INFO 13980 --- [ConfigServer] [RMI TCP Connection(8)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2025-09-25T13:36:04.743+05:30  INFO 13980 --- [ConfigServer] [RMI TCP Connection(8)-127.0.0.1] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-09-25T13:36:04.859+05:30  INFO 13980 --- [ConfigServer] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-09-25T13:36:08.761+05:30  INFO 17924 --- [ConfigServer] [main] c.s.springboot.ConfigServerApplication   : Starting ConfigServerApplication using Java 17.0.11 with PID 17924 (D:\Eclipse-23-24\SpringBoot\EmbarkX\EcomApp-Containers\1_ConfigServer\target\classes started by ssais in D:\Eclipse-23-24\SpringBoot\EmbarkX\EcomApp-Containers\1_ConfigServer)
+2025-09-25T13:36:08.764+05:30  INFO 17924 --- [ConfigServer] [main] c.s.springboot.ConfigServerApplication   : The following 1 profile is active: "native"
+2025-09-25T13:36:10.155+05:30  INFO 17924 --- [ConfigServer] [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=8f4691b3-af9b-3ae8-b920-e2fe721df0ff
+2025-09-25T13:36:10.533+05:30  INFO 17924 --- [ConfigServer] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8086 (http)
+2025-09-25T13:36:10.550+05:30  INFO 17924 --- [ConfigServer] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-09-25T13:36:10.550+05:30  INFO 17924 --- [ConfigServer] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.44]
+2025-09-25T13:36:10.640+05:30  INFO 17924 --- [ConfigServer] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-09-25T13:36:10.640+05:30  INFO 17924 --- [ConfigServer] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1773 ms
+2025-09-25T13:36:12.301+05:30  INFO 17924 --- [ConfigServer] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2025-09-25T13:36:12.383+05:30  INFO 17924 --- [ConfigServer] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8086 (http) with context path '/'
+2025-09-25T13:36:12.600+05:30  INFO 17924 --- [ConfigServer] [main] c.s.springboot.ConfigServerApplication   : Started ConfigServerApplication in 4.795 seconds (process running for 5.984)
+2025-09-25T13:36:13.193+05:30  INFO 17924 --- [ConfigServer] [RMI TCP Connection(4)-127.0.0.1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-09-25T13:36:13.193+05:30  INFO 17924 --- [ConfigServer] [RMI TCP Connection(4)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-09-25T13:36:13.195+05:30  INFO 17924 --- [ConfigServer] [RMI TCP Connection(4)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-09-25T13:36:50.883+05:30  INFO 17924 --- [ConfigServer] [http-nio-8086-exec-1] o.s.c.c.s.e.NativeEnvironmentRepository  : Adding property source: Config resource 'class path resource [config/eureka-server-service.yml]' via location 'classpath:/config/'
+2025-09-25T13:37:20.779+05:30  INFO 17924 --- [ConfigServer] [http-nio-8086-exec-2] o.s.c.c.s.e.NativeEnvironmentRepository  : Adding property source: Config resource 'class path resource [config/user-service.yml]' via location 'classpath:/config/'
+2025-09-25T13:37:47.333+05:30  INFO 17924 --- [ConfigServer] [http-nio-8086-exec-3] o.s.c.c.s.e.NativeEnvironmentRepository  : Adding property source: Config resource 'class path resource [config/product-service.yml]' via location 'classpath:/config/'
+2025-09-25T13:38:20.249+05:30  INFO 17924 --- [ConfigServer] [http-nio-8086-exec-5] o.s.c.c.s.e.NativeEnvironmentRepository  : Adding property source: Config resource 'class path resource [config/order-service.yml]' via location 'classpath:/config/'
+2025-09-25T13:39:07.527+05:30  INFO 17924 --- [ConfigServer] [http-nio-8086-exec-8] o.s.c.c.s.e.NativeEnvironmentRepository  : Adding property source: Config resource 'class path resource [config/api-gateway-service.yml]' via location 'classpath:/config/'
+2025-09-25T13:46:25.670+05:30  INFO 17924 --- [ConfigServer] [RMI TCP Connection(14)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2025-09-25T13:46:25.881+05:30  INFO 17924 --- [ConfigServer] [RMI TCP Connection(14)-127.0.0.1] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-09-25T13:46:26.069+05:30  INFO 17924 --- [ConfigServer] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-09-25T13:46:30.063+05:30  INFO 16124 --- [ConfigServer] [main] c.s.springboot.ConfigServerApplication   : Starting ConfigServerApplication using Java 17.0.11 with PID 16124 (D:\Eclipse-23-24\SpringBoot\EmbarkX\EcomApp-Containers\1_ConfigServer\target\classes started by ssais in D:\Eclipse-23-24\SpringBoot\EmbarkX\EcomApp-Containers\1_ConfigServer)
+2025-09-25T13:46:30.068+05:30  INFO 16124 --- [ConfigServer] [main] c.s.springboot.ConfigServerApplication   : The following 1 profile is active: "native"
+2025-09-25T13:46:31.566+05:30  INFO 16124 --- [ConfigServer] [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=8f4691b3-af9b-3ae8-b920-e2fe721df0ff
+2025-09-25T13:46:32.083+05:30  INFO 16124 --- [ConfigServer] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8086 (http)
+2025-09-25T13:46:32.104+05:30  INFO 16124 --- [ConfigServer] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-09-25T13:46:32.105+05:30  INFO 16124 --- [ConfigServer] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.44]
+2025-09-25T13:46:32.186+05:30  INFO 16124 --- [ConfigServer] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-09-25T13:46:32.187+05:30  INFO 16124 --- [ConfigServer] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2003 ms
+2025-09-25T13:46:33.630+05:30  INFO 16124 --- [ConfigServer] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2025-09-25T13:46:33.909+05:30  INFO 16124 --- [ConfigServer] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8086 (http) with context path '/'
+2025-09-25T13:46:34.289+05:30  INFO 16124 --- [ConfigServer] [main] c.s.springboot.ConfigServerApplication   : Started ConfigServerApplication in 5.156 seconds (process running for 6.459)
+2025-09-25T13:46:35.021+05:30  INFO 16124 --- [ConfigServer] [RMI TCP Connection(4)-127.0.0.1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-09-25T13:46:35.021+05:30  INFO 16124 --- [ConfigServer] [RMI TCP Connection(4)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-09-25T13:46:35.024+05:30  INFO 16124 --- [ConfigServer] [RMI TCP Connection(4)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
+2025-09-25T13:46:45.749+05:30  INFO 16124 --- [ConfigServer] [http-nio-8086-exec-1] o.s.c.c.s.e.NativeEnvironmentRepository  : Adding property source: Config resource 'class path resource [config/api-gateway-service.yml]' via location 'classpath:/config/'
+2025-09-25T13:47:56.418+05:30  INFO 16124 --- [ConfigServer] [http-nio-8086-exec-3] o.s.c.c.s.e.NativeEnvironmentRepository  : Adding property source: Config resource 'class path resource [config/api-gateway-service.yml]' via location 'classpath:/config/'
+2025-09-25T13:49:44.768+05:30  INFO 16124 --- [ConfigServer] [http-nio-8086-exec-5] o.s.c.c.s.e.NativeEnvironmentRepository  : Adding property source: Config resource 'class path resource [config/user-service.yml]' via location 'classpath:/config/'
+2025-09-25T13:50:50.427+05:30  INFO 16124 --- [ConfigServer] [http-nio-8086-exec-7] o.s.c.c.s.e.NativeEnvironmentRepository  : Adding property source: Config resource 'class path resource [config/api-gateway-service.yml]' via location 'classpath:/config/'
+2025-09-25T14:06:07.191+05:30  INFO 16124 --- [ConfigServer] [http-nio-8086-exec-10] o.s.c.c.s.e.NativeEnvironmentRepository  : Adding property source: Config resource 'class path resource [config/user-service.yml]' via location 'classpath:/config/'
+2025-09-25T14:23:09.327+05:30  INFO 16124 --- [ConfigServer] [http-nio-8086-exec-1] o.s.c.c.s.e.NativeEnvironmentRepository  : Adding property source: Config resource 'class path resource [config/user-service.yml]' via location 'classpath:/config/'
+2025-09-25T14:48:45.431+05:30  INFO 16124 --- [ConfigServer] [RMI TCP Connection(69)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2025-09-25T14:48:45.724+05:30  INFO 16124 --- [ConfigServer] [RMI TCP Connection(69)-127.0.0.1] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-09-25T14:48:46.043+05:30  INFO 16124 --- [ConfigServer] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-09-25T14:48:50.832+05:30  INFO 20220 --- [ConfigServer] [main] c.s.springboot.ConfigServerApplication   : Starting ConfigServerApplication using Java 17.0.11 with PID 20220 (D:\Eclipse-23-24\SpringBoot\EmbarkX\EcomApp-Containers\1_ConfigServer\target\classes started by ssais in D:\Eclipse-23-24\SpringBoot\EmbarkX\EcomApp-Containers\1_ConfigServer)
+2025-09-25T14:48:50.849+05:30  INFO 20220 --- [ConfigServer] [main] c.s.springboot.ConfigServerApplication   : The following 1 profile is active: "native"
+2025-09-25T14:48:52.953+05:30  INFO 20220 --- [ConfigServer] [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=8f4691b3-af9b-3ae8-b920-e2fe721df0ff
+2025-09-25T14:48:53.385+05:30  INFO 20220 --- [ConfigServer] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8086 (http)
+2025-09-25T14:48:53.412+05:30  INFO 20220 --- [ConfigServer] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-09-25T14:48:53.412+05:30  INFO 20220 --- [ConfigServer] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.44]
+2025-09-25T14:48:53.521+05:30  INFO 20220 --- [ConfigServer] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-09-25T14:48:53.521+05:30  INFO 20220 --- [ConfigServer] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2471 ms
+2025-09-25T14:48:55.724+05:30  INFO 20220 --- [ConfigServer] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2025-09-25T14:48:55.926+05:30  INFO 20220 --- [ConfigServer] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8086 (http) with context path '/'
+2025-09-25T14:48:56.223+05:30  INFO 20220 --- [ConfigServer] [main] c.s.springboot.ConfigServerApplication   : Started ConfigServerApplication in 6.383 seconds (process running for 7.507)
+2025-09-25T14:48:56.803+05:30  INFO 20220 --- [ConfigServer] [RMI TCP Connection(4)-127.0.0.1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-09-25T14:48:56.804+05:30  INFO 20220 --- [ConfigServer] [RMI TCP Connection(4)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-09-25T14:48:56.807+05:30  INFO 20220 --- [ConfigServer] [RMI TCP Connection(4)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2025-09-25T14:56:59.131+05:30  INFO 20220 --- [ConfigServer] [http-nio-8086-exec-1] o.s.c.c.s.e.NativeEnvironmentRepository  : Adding property source: Config resource 'class path resource [config/user-service.yml]' via location 'classpath:/config/'
+2025-09-25T15:59:01.255+05:30  INFO 20220 --- [ConfigServer] [http-nio-8086-exec-3] o.s.c.c.s.e.NativeEnvironmentRepository  : Adding property source: Config resource 'class path resource [config/user-service.yml]' via location 'classpath:/config/'
+2025-09-25T16:29:18.118+05:30  INFO 20220 --- [ConfigServer] [RMI TCP Connection(104)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2025-09-25T16:29:18.386+05:30  INFO 20220 --- [ConfigServer] [RMI TCP Connection(104)-127.0.0.1] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-09-25T16:29:18.659+05:30  INFO 20220 --- [ConfigServer] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete

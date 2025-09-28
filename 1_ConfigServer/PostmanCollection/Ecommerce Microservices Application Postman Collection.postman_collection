@@ -1,0 +1,1359 @@
+{
+	"info": {
+		"_postman_id": "df041574-63ca-4844-855a-074cf2dff50a",
+		"name": "Ecommerce Microservices Application postmanCollection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2736887"
+	},
+	"item": [
+		{
+			"name": "Inter Service Communication",
+			"item": [
+				{
+					"name": "Provider Service",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8087/instance-info",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8087",
+							"path": [
+								"instance-info"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Rest Template Consumer",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8088/api/rest-template/instance",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8088",
+							"path": [
+								"api",
+								"rest-template",
+								"instance"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Feign Client Consumer",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8088/api/feign/instance",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8088",
+							"path": [
+								"api",
+								"feign",
+								"instance"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Rest Client Consumer",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8088/api/rest-client/instance",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8088",
+							"path": [
+								"api",
+								"rest-client",
+								"instance"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Web Client Consumer",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8088/api/webclient/instance",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8088",
+							"path": [
+								"api",
+								"webclient",
+								"instance"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "HTTP Interface Consumer",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8088/api/http-interface/instance",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8088",
+							"path": [
+								"api",
+								"http-interface",
+								"instance"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "HTTP Interface Consumer for Request Id",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8088/api/http-interface/instanceId/100",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8088",
+							"path": [
+								"api",
+								"http-interface",
+								"instanceId",
+								"100"
+							],
+							"query": [
+								{
+									"key": "value",
+									"value": "100",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "consumer shutdown",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8088/actuator/shutdown",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8088",
+							"path": [
+								"actuator",
+								"shutdown"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "provider shutdown",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8087/actuator/shutdown",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8087",
+							"path": [
+								"actuator",
+								"shutdown"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "eureka shutdown",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8761/actuator/shutdown",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8761",
+							"path": [
+								"actuator",
+								"shutdown"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Kafka Requests",
+			"item": [
+				{
+					"name": "Producer request",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8087/api/send?message=My name is sai Srinivas!!",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8087",
+							"path": [
+								"api",
+								"send"
+							],
+							"query": [
+								{
+									"key": "message",
+									"value": "My name is sai Srinivas!!"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "function",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "Hello Sai",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8087/uppercase",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8087",
+							"path": [
+								"uppercase"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Keycloak Oauth2 Security Requests",
+			"item": [
+				{
+					"name": "oauth2-client-credentials Token Generation",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "grant_type",
+									"value": "client_credentials",
+									"type": "text"
+								},
+								{
+									"key": "client_id",
+									"value": "oauth2-client-credentials",
+									"type": "text"
+								},
+								{
+									"key": "client_secret",
+									"value": "MSmJA0GtA8QutFpKm1HSBoKebAXfqI15",
+									"type": "text"
+								},
+								{
+									"key": "scope",
+									"value": "openid email profile",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8096/realms/oauth2-demos/protocol/openid-connect/token",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8096",
+							"path": [
+								"realms",
+								"oauth2-demos",
+								"protocol",
+								"openid-connect",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "oauth2-client-credentials Access",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "clientSecret",
+									"value": "MSmJA0GtA8QutFpKm1HSBoKebAXfqI15",
+									"type": "string"
+								},
+								{
+									"key": "client_authentication",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "scope",
+									"value": "openid email roles profile",
+									"type": "string"
+								},
+								{
+									"key": "tokenName",
+									"value": "oauth2-client-credentials-demo",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "oauth2-client-credentials",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "http://localhost:8096/realms/oauth2-demos/protocol/openid-connect/token",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "client_credentials",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/proxy",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"proxy"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "pkce-flow Access Request",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "clientId",
+									"value": "oath2-pkce-demo",
+									"type": "string"
+								},
+								{
+									"key": "refreshRequestParams",
+									"value": [],
+									"type": "any"
+								},
+								{
+									"key": "tokenRequestParams",
+									"value": [],
+									"type": "any"
+								},
+								{
+									"key": "authRequestParams",
+									"value": [],
+									"type": "any"
+								},
+								{
+									"key": "tokenName",
+									"value": "oauth2-pkce-flow",
+									"type": "string"
+								},
+								{
+									"key": "challengeAlgorithm",
+									"value": "S256",
+									"type": "string"
+								},
+								{
+									"key": "scope",
+									"value": "openid email roles profile",
+									"type": "string"
+								},
+								{
+									"key": "redirect_uri",
+									"value": "http://localhost:5173",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code_with_pkce",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "http://localhost:8096/realms/oauth2-demos/protocol/openid-connect/auth",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "client_authentication",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "http://localhost:8096/realms/oauth2-demos/protocol/openid-connect/token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/proxy",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"proxy"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PKCE Flow",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "clientId",
+									"value": "oath2-pkce-demo",
+									"type": "string"
+								},
+								{
+									"key": "tokenName",
+									"value": "oath2-pkce-flow",
+									"type": "string"
+								},
+								{
+									"key": "redirect_uri",
+									"value": "http://localhost:5173",
+									"type": "string"
+								},
+								{
+									"key": "useBrowser",
+									"value": false,
+									"type": "boolean"
+								},
+								{
+									"key": "clientSecret",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "http://localhost:8096/realms/oauth2-demos/protocol/openid-connect/token",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "http://localhost:8096/realms/oauth2-demos/protocol/openid-connect/auth",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code_with_pkce",
+									"type": "string"
+								},
+								{
+									"key": "client_authentication",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "scope",
+									"value": "openid email roles profile",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8099/api/home",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8099",
+							"path": [
+								"api",
+								"home"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Oauth2 API Gateway test",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessTokenUrl",
+									"value": "http://localhost:8096/realms/My-Ecommerce-Application/protocol/openid-connect/token",
+									"type": "string"
+								},
+								{
+									"key": "clientSecret",
+									"value": "pcPxinel3MZOlDyH7uqfjma6OxMGZI9V",
+									"type": "string"
+								},
+								{
+									"key": "tokenName",
+									"value": "ecommerce-app-client-credentials-demo",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "ecommerce-app-client-credentials",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "client_credentials",
+									"type": "string"
+								},
+								{
+									"key": "client_authentication",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "scope",
+									"value": "openid email roles profile",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8090/data",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"data"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Keycloak User",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJneXZobGNodXlrbTY0bV9GVHJJLXh5OVJvdVZRbEQzdnNwVkQ4YXJuem44In0.eyJleHAiOjE3NTg5NjY5MDUsImlhdCI6MTc1ODk2NjYwNSwianRpIjoib25sdHJvOmIwYTdhMjlhLWRmYmQtNjZhYS01OTJmLTA0NmI5YzBjMDM1NSIsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA5Ni9yZWFsbXMvTXktRWNvbW1lcmNlLUFwcGxpY2F0aW9uIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiYWRtaW4tY2xpIiwic2lkIjoiOGJjODVlNjctNDViYy00MmViLWFjZGYtYjliYWRlNTA5ZTdlIiwic2NvcGUiOiJwcm9maWxlIGVtYWlsIn0.ekRt5u9r6PfNwu1M7AIJ35zlzSvQk4D-L8DxR3ICGsNgKM_fhXXu1zyfnCLLxkoVuvBRFZcVorY17B87eGoat1i-sXY5b8F7y3ESsSE2vmBdZPyOJvDxFTbNTsTgkxTIZxrtYgEnI2WF9i7GVxDy-feNNLY_bn_9K_iYAkJ5B5Xz4inKd7u5u3QF_OxwMQ2aF9S46jFqyT6lymp8J2KRs5l9vynLAkRfp_6cA1cnNvUhHLguKvTn-qWqttl_pRyDsfndRh6yYYtePlPGklNjB9mTyTBiEGgrmQBqHL38IbT7O_70ABYmtdW7k76lj-SUWC-9xCEk5xxpidWO5GrFdg",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"enabled\": true,\r\n    \"username\": \"sai2279\",\r\n    \"firstName\": \"sai first\",\r\n    \"lastName\": \"sai last\",\r\n    \"email\": \"sai2279@gmail.com\",\r\n    \"credentials\": [\r\n        {\r\n            \"type\": \"password\",\r\n            \"value\": \"sai2279\",\r\n            \"temporary\": false\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8096/admin/realms/My-Ecommerce-Application/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8096",
+							"path": [
+								"admin",
+								"realms",
+								"My-Ecommerce-Application",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Keycloak User",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJsQ0dhTlVENUM1cF9kS3k4WHE1Unpkc0NVNFdlZ0hjVUlnWldWSHJYdWRZIn0.eyJleHAiOjE3NTg5NzQwMDksImlhdCI6MTc1ODk3MzcwOSwianRpIjoib25sdHJvOmJhODM3ZTFlLWNmOGItZjZiYi01M2FiLTZlODhkMmMyZWM5ZSIsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA5Ni9yZWFsbXMvTXktRWNvbW1lcmNlLUFwcGxpY2F0aW9uIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiYWRtaW4tY2xpIiwic2lkIjoiNTMyNTZkMzYtZTU0My00Y2Q1LThkOGUtOGFlNjAwOTg4NDA1Iiwic2NvcGUiOiJwcm9maWxlIGVtYWlsIn0.eC7Q9ht_BptfMr2IuXQ2oI0IUwzQkkM7SVmyZpxuSBcmhqFvZd8lnQhMkPCFFB05Uk4bjWOvq3410ssrtSemwBgY8xwhYQW4DyqLDSEUn0Hdp6SlO94HqqWO4HyJok5pxIMuqsgp5I6CoDidWBQU499DKDvyB1UPNEllWLQya_4h9dSsPzeHLcaQjDriD8B9AEwLERfQPy6JAkFnUg309dIl0GxtPOrK80D2gAfbfph0UeVnOAt-M6vKOHcA8cCKK_pYKTYUF_A0fU9Z6Sv9-avkc1Uda-H8AaRIe7X6GraIQV1p7F61dla-3efl2Va63Da0a6uQIyJABBCxbg7h_g",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"enabled\": true,\r\n    \"username\": \"sai2279\",\r\n    \"firstName\": \"sai first\",\r\n    \"lastName\": \"sai last\",\r\n    \"email\": \"sai2279@gmail.com\",\r\n    \"credentials\": [\r\n        {\r\n            \"type\": \"password\",\r\n            \"value\": \"sai2279\",\r\n            \"temporary\": false\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8096/admin/realms/My-Ecommerce-Application/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8096",
+							"path": [
+								"admin",
+								"realms",
+								"My-Ecommerce-Application",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get ById Keycloak User",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJPQWNPYldSRFRjSjBOdWthOWFDYXgwX1FMVjdCaGkycHNySFZkRnNrdEFRIn0.eyJleHAiOjE3NTg3OTU4MTAsImlhdCI6MTc1ODc5NTUxMCwianRpIjoib25sdHJvOjlmMGQwMjUwLWJjZjctZmI1ZS1lZTk4LTFlNDcwZDI0NWY0OSIsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA5Ni9yZWFsbXMvTXktRWNvbW1lcmNlLUFwcGxpY2F0aW9uIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiYWRtaW4tY2xpIiwic2lkIjoiZjQ0ZTJlOWQtMjg2ZS00NTMzLWJiN2EtNWViOTIyYzY4OGEwIiwic2NvcGUiOiJwcm9maWxlIGVtYWlsIn0.EJJXZzOCQHytaQVsDXIxFOqTyDc_MBcWuzN9V28_Pj5j3QqoJOROjgToIg981DSJYIzAG3DW3Qmn7GiRUBekpNbw13PMIVXxapVw3d_712MF3EB-pEgNr42HqnX5RP4JgLXT54CEIWRmOCefHrl7TXYtnVOMwNUzxwIyp_oOdAIO2XELcNz7mYiLwUlfiI9NYbjz8K20F4sw6oVPiJkOKv9qYm0YhThi74WvWFFnuYlGCIm4mgwAhQa4VSjvZ4XlehhD3rTJ9UU_DakeQtzWbZeZBd218UTcv92oGrfB45h-Nkc0swo1fQOZVGjX0FNikEA6ecW5iwQ_eE2CtEgU-w",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"enabled\": true,\r\n    \"username\": \"sai2279\",\r\n    \"firstName\": \"sai first\",\r\n    \"lastName\": \"sai last\",\r\n    \"email\": \"sai2279@gmail.com\",\r\n    \"credentials\": [\r\n        {\r\n            \"type\": \"password\",\r\n            \"value\": \"sai2279\",\r\n            \"temporary\": false\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8096/admin/realms/My-Ecommerce-Application/users/f34d9bc0-81de-4ffc-97f9-fa6704884653",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8096",
+							"path": [
+								"admin",
+								"realms",
+								"My-Ecommerce-Application",
+								"users",
+								"f34d9bc0-81de-4ffc-97f9-fa6704884653"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Keycloak User",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJ1OW1HX0s2Ymx5UnZiQk5paVZidEZTSTF4cm9Fa2phY1gxS2ZZMkhGaUs0In0.eyJleHAiOjE3NTg2OTI4NTEsImlhdCI6MTc1ODY5MjU1MSwianRpIjoib25sdHJvOjNiNTljN2VlLTAzNmItMGFlNC0wOWYwLTJmY2EzNzlmZjYzZCIsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA5Ni9yZWFsbXMvTXktRWNvbW1lcmNlLUFwcGxpY2F0aW9uIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiYWRtaW4tY2xpIiwic2lkIjoiN2UxZjI3MDMtYWJiYi00MzFkLWJiZDgtNjljMDIwZjc0NDY5Iiwic2NvcGUiOiJwcm9maWxlIGVtYWlsIn0.IObjIk4iEUm_GxdbS_fc1erjFrHc12vl3itGtzNMO9csbreBkXOpwLZM5jQ3-HudD6_AJcXxYEnDDX1yjT3PEKQXuoEweimfkEJBWK1bgsNroB3FcHUjiPq703mBr38jMYEMtDQF2y_Iegl71XE2ADFZpLZtvpycw42HlCFjoantaZNnF2QooqmAxyC0RVruLyhuZYC14kdltoyjgaLrRg0O_PQwTT-01bZXvE_j3Q-v8ZKKbarg2TkATP8v4JmUZRrgbVEHQYufvJ8PNU-1LqshuKJZWVHN39WlMeFmRKl_Q_R-ihlgEmLDAlHZEcwPuAjcy3S_eOFef2YkP35HHw",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"enabled\": true,\r\n    \"username\": \"sai2279\",\r\n    \"firstName\": \"sai first\",\r\n    \"lastName\": \"sai last\",\r\n    \"email\": \"sai2279@gmail.com\",\r\n    \"credentials\": [\r\n        {\r\n            \"type\": \"password\",\r\n            \"value\": \"sai2279\",\r\n            \"temporary\": false\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8096/admin/realms/My-Ecommerce-Application/users/ec5a89bf-1660-49af-a03a-039d747437e1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8096",
+							"path": [
+								"admin",
+								"realms",
+								"My-Ecommerce-Application",
+								"users",
+								"ec5a89bf-1660-49af-a03a-039d747437e1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Keycloak User",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJ1OW1HX0s2Ymx5UnZiQk5paVZidEZTSTF4cm9Fa2phY1gxS2ZZMkhGaUs0In0.eyJleHAiOjE3NTg2OTMyMDksImlhdCI6MTc1ODY5MjkwOSwianRpIjoib25sdHJvOjI3N2I4M2RhLTVmNDEtZmUxMi1lNTBmLTMwMjFmNTdiZGQ5ZCIsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA5Ni9yZWFsbXMvTXktRWNvbW1lcmNlLUFwcGxpY2F0aW9uIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiYWRtaW4tY2xpIiwic2lkIjoiNDZkZTU0ZTYtMWU3Yi00YmZjLTkzNWEtZWY3NmNmNjEyNmRmIiwic2NvcGUiOiJwcm9maWxlIGVtYWlsIn0.mBZhAWBea86Uq_EjMHPU9UV_Ts5X4XJgnqnGTu_UN_VQix_xe4xvv25FGiNmm8f6eW1JQhDXz9Uk3Sq9O8h75vBhrZf8mzN_rmZIeK9Qt6z_6rBKQinEMGTXO5pSepTiGWnjXHr-HbF3lqi5OfwjEjXIPbQh2M6kQaRDPtf1B8EOBSMigE1F1RJUMHjDnk0eQBFmYs1EBGb9UGO3QiX7qXvvCZP6Tq_QMy6UkJIxiK59dpqqjhMmDYNbW_8UT4h3jvmrK1F2YDcGH3a-O_U5M89abC8EdtVuVPXDZeTAVg6O7ezOGlhYDzALuVD0jBExjhxENQZfSISI3bCrj8WnGg",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"enabled\": true,\r\n    \"firstName\": \"sai first 9\",\r\n    \"lastName\": \"sai last 8\",\r\n    \"email\": \"sai227@gmail.com\",\r\n    \"credentials\": [\r\n        {\r\n            \"type\": \"password\",\r\n            \"value\": \"sai227\",\r\n            \"temporary\": false\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8096/admin/realms/My-Ecommerce-Application/users/f34d9bc0-81de-4ffc-97f9-fa6704884653",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8096",
+							"path": [
+								"admin",
+								"realms",
+								"My-Ecommerce-Application",
+								"users",
+								"f34d9bc0-81de-4ffc-97f9-fa6704884653"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Admin Token",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "clientId",
+									"value": "oath2-pkce",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "http://localhost:8096/realms/My-Ecommerce-Application/protocol/openid-connect/token",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "http://localhost:8096/realms/My-Ecommerce-Application/protocol/openid-connect/auth",
+									"type": "string"
+								},
+								{
+									"key": "tokenName",
+									"value": "oath2-pkce-flow",
+									"type": "string"
+								},
+								{
+									"key": "refreshRequestParams",
+									"value": [],
+									"type": "any"
+								},
+								{
+									"key": "tokenRequestParams",
+									"value": [],
+									"type": "any"
+								},
+								{
+									"key": "authRequestParams",
+									"value": [],
+									"type": "any"
+								},
+								{
+									"key": "challengeAlgorithm",
+									"value": "S256",
+									"type": "string"
+								},
+								{
+									"key": "scope",
+									"value": "openid email roles profile",
+									"type": "string"
+								},
+								{
+									"key": "redirect_uri",
+									"value": "http://localhost:5173",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code_with_pkce",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "client_authentication",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJ1OW1HX0s2Ymx5UnZiQk5paVZidEZTSTF4cm9Fa2phY1gxS2ZZMkhGaUs0In0.eyJleHAiOjE3NTg2NTA3NTcsImlhdCI6MTc1ODY1MDQ1NywianRpIjoib25sdHJvOjNiMzdlMTE4LTU0OTItNDc1Yy0wYTIzLTU1Y2ZlMTI0NzRkOSIsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA5Ni9yZWFsbXMvTXktRWNvbW1lcmNlLUFwcGxpY2F0aW9uIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiYWRtaW4tY2xpIiwic2lkIjoiOGQyNjM5MDItYTBkMS00NGZkLTlhZDYtN2MxMGEwYjk2ZWE4Iiwic2NvcGUiOiJwcm9maWxlIGVtYWlsIn0.M2zZ2f5j07CCKwCLTiwgTM2THRn8ZE9PYdsBUkphiGeQ1buCAoyXeae0p0CR0CHtMo_THOn7917L9YPgu2Ye9t3j_giSh316qC_IU2QYOVNNsHUjbRmzbU0nnILti0upi-MQrICso9RdW6gK2G6rrtNecnZb_UrQE1fPUZ3phhR23y8tgHvbofyVTH-3nJxs1RN26KhKTBCtUAfJymNxfDnxQNnZYzgnBPKofhlI3dn_OFaaQiEUP7vK9IwfTwle9AzxbtU8yBPyBY6AXwtnC_wjsZUrdauvSn03qoB0JoL5EX2OTA2LJaBsQk9OVsWht--jS4QAiD-1eaFGyZECYA",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "client_id",
+									"value": "admin-cli",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "sai22",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "sai22",
+									"type": "text"
+								},
+								{
+									"key": "grant_type",
+									"value": "password",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8096/realms/My-Ecommerce-Application/protocol/openid-connect/token",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8096",
+							"path": [
+								"realms",
+								"My-Ecommerce-Application",
+								"protocol",
+								"openid-connect",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Realm Role by Name",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJKM3gzb21TUzUwX05Md0lxTDBYTk5hLUQwZVdUbTZJSlhTSHNiX1h4eDRnIn0.eyJleHAiOjE3NTg4OTA5NjQsImlhdCI6MTc1ODg5MDY2NCwianRpIjoib25sdHJvOmJhNjQ2ZGNjLWFkYzItM2NhYi00OTJjLTM3ZWY2ZjgwYzBmNyIsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA5Ni9yZWFsbXMvTXktRWNvbW1lcmNlLUFwcGxpY2F0aW9uIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiYWRtaW4tY2xpIiwic2lkIjoiNTQ2YjgxMjktYzVmNi00YjhhLWE4YTUtZWIxZTBkOGQ3MTAyIiwic2NvcGUiOiJwcm9maWxlIGVtYWlsIn0.Aqkxmo6F0atFvEeWsKuW4bBn39TFmYcUXIt5melQMv_O-5JeDO0SYzPZxguJ9sFsqNbTLsS6_H88fWfsl_jS_uFgl-eepfWXWHvrnnTDGqfNxgNPnSx1Io7CrtuEypUwlaQllc76QEAQCcvvjf7A8mG0Gz-jMdqormAqV_pPdMH8U6EWh3BEOUooB3Sz9oRUiuk1wCpsAyed2HM4RxtcY4wseEJqgla_-kp_dwRLJDfxMVawq_tbTUlfCT50wiEALu2yMbJIYwYot-Ky7PVd96lRk66q0DbyI3cqBtWd0HddCi8R_AX4Gy8D5BXxN7BiURI_wqVMNUajtczgzqQ62g",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8096/admin/realms/My-Ecommerce-Application/roles/PRODUCT",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8096",
+							"path": [
+								"admin",
+								"realms",
+								"My-Ecommerce-Application",
+								"roles",
+								"PRODUCT"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Assign Realm Role to User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJ1OW1HX0s2Ymx5UnZiQk5paVZidEZTSTF4cm9Fa2phY1gxS2ZZMkhGaUs0In0.eyJleHAiOjE3NTg3MTI0MDYsImlhdCI6MTc1ODcxMjEwNiwianRpIjoib25sdHJvOmVjZjYxODEzLTAwM2MtODEzMS1mMTU1LTc0NGFiZDMyYWE2ZiIsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA5Ni9yZWFsbXMvTXktRWNvbW1lcmNlLUFwcGxpY2F0aW9uIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiYWRtaW4tY2xpIiwic2lkIjoiMDgxYWVmZGUtYmE1Mi00ZTUwLTlmN2YtMzdjMjYyOGZhYTQ2Iiwic2NvcGUiOiJwcm9maWxlIGVtYWlsIn0.EBZNN3D6zitWrgClsE586PDNaaenZAu0m6WrZAdHDXqZTGSSFre8YVk3_ybgpiKzvK5mdw9KauvWZJB7PyTRSkYpNP1uPemyacMEEm5OLvIu04G115V8zZABCe_ilk8VfQ5pj0kgednP-79WDgjqeiNpbs3PIlxbrt0tE5X2huzxsi6LYYK4oU8mzvhQQm-kldcixb3SM-9sGA9vDX81wktdJFUmwiTbK6JsN6s50UQ0fXD9r0sRkvBeVMITklo-4IgFyryTVnrCactn9URd4gw7pCi5w7gUZvB6Gm5gESJOt1SA6zyy7-oRDcbwfcjgRS6jeOXjqUcJ2U_3h-c7qw",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[{ \r\n    \"id\": \"90968b30-7318-4aaf-92a4-781e9abb8922\",\r\n    \"name\": \"PRODUCT\",\r\n    \"description\": \"product\"        \r\n}]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8096/admin/realms/My-Ecommerce-Application/users/8d69c7e2-70b4-4ab3-a6bd-99821be273c6/role-mappings/realm",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8096",
+							"path": [
+								"admin",
+								"realms",
+								"My-Ecommerce-Application",
+								"users",
+								"8d69c7e2-70b4-4ab3-a6bd-99821be273c6",
+								"role-mappings",
+								"realm"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Client Role By Name",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJ1OW1HX0s2Ymx5UnZiQk5paVZidEZTSTF4cm9Fa2phY1gxS2ZZMkhGaUs0In0.eyJleHAiOjE3NTg3MTI0MDYsImlhdCI6MTc1ODcxMjEwNiwianRpIjoib25sdHJvOmVjZjYxODEzLTAwM2MtODEzMS1mMTU1LTc0NGFiZDMyYWE2ZiIsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA5Ni9yZWFsbXMvTXktRWNvbW1lcmNlLUFwcGxpY2F0aW9uIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiYWRtaW4tY2xpIiwic2lkIjoiMDgxYWVmZGUtYmE1Mi00ZTUwLTlmN2YtMzdjMjYyOGZhYTQ2Iiwic2NvcGUiOiJwcm9maWxlIGVtYWlsIn0.EBZNN3D6zitWrgClsE586PDNaaenZAu0m6WrZAdHDXqZTGSSFre8YVk3_ybgpiKzvK5mdw9KauvWZJB7PyTRSkYpNP1uPemyacMEEm5OLvIu04G115V8zZABCe_ilk8VfQ5pj0kgednP-79WDgjqeiNpbs3PIlxbrt0tE5X2huzxsi6LYYK4oU8mzvhQQm-kldcixb3SM-9sGA9vDX81wktdJFUmwiTbK6JsN6s50UQ0fXD9r0sRkvBeVMITklo-4IgFyryTVnrCactn9URd4gw7pCi5w7gUZvB6Gm5gESJOt1SA6zyy7-oRDcbwfcjgRS6jeOXjqUcJ2U_3h-c7qw",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8096/admin/realms/My-Ecommerce-Application/users/8d69c7e2-70b4-4ab3-a6bd-99821be273c6/role-mappings/clients/96de5d85-c665-47eb-b9ba-17b9e71e5ace",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8096",
+							"path": [
+								"admin",
+								"realms",
+								"My-Ecommerce-Application",
+								"users",
+								"8d69c7e2-70b4-4ab3-a6bd-99821be273c6",
+								"role-mappings",
+								"clients",
+								"96de5d85-c665-47eb-b9ba-17b9e71e5ace"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Assign Client Role to User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJ1OW1HX0s2Ymx5UnZiQk5paVZidEZTSTF4cm9Fa2phY1gxS2ZZMkhGaUs0In0.eyJleHAiOjE3NTg3MTMxODcsImlhdCI6MTc1ODcxMjg4NywianRpIjoib25sdHJvOjE1OGU4OTc2LTE3ZDktZjg0OS1lMmUxLTUyNGVhYjQzNzQ0NSIsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA5Ni9yZWFsbXMvTXktRWNvbW1lcmNlLUFwcGxpY2F0aW9uIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiYWRtaW4tY2xpIiwic2lkIjoiYTlhZmE5YjgtNDk0ZS00MTBiLWEyZGQtZDZjY2FjNDA4MWVkIiwic2NvcGUiOiJwcm9maWxlIGVtYWlsIn0.AtsP5OISnXbOZJp-hriEPY1Z975pnZ6NsdcAYJ-HchndgTYr5sBmAS6XEUrKetmlM-b6E-efL1Cc3BJGFV3J_7jFRumSwzFBN-Sf1GBJcUcgvTgHbkU4g0cxo5atf2Tm_qbFMSEaslwCMBdn9TenMSEq2v56BuA9DZLCTBomCap-7eqNO9KqiLjH6W1EwH6IfPRbR3ie5RLi9Ylor6JjxQWOJWeqANDwcwRcEsmJ6TKHUYyuI2otsYVc7H8cUwk45o-V7qwZjWXpJ56w4DmbnvngFAzgEc2-7A3UgYdjCr_JntXv6GHCNI6idJuvvYjNBoGER9-GlcJZkkKT2-eENA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[{\r\n    \"id\": \"34914296-525b-478f-bb6b-34ba76f3fc93\",\r\n    \"name\": \"Product\",\r\n    \"description\": \"Product\"\r\n}]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8096/admin/realms/My-Ecommerce-Application/users/8d69c7e2-70b4-4ab3-a6bd-99821be273c6/role-mappings/clients/43875020-c2a9-43cf-9abd-8f12fd9cd097",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8096",
+							"path": [
+								"admin",
+								"realms",
+								"My-Ecommerce-Application",
+								"users",
+								"8d69c7e2-70b4-4ab3-a6bd-99821be273c6",
+								"role-mappings",
+								"clients",
+								"43875020-c2a9-43cf-9abd-8f12fd9cd097"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "My Ecommerce API Gateway Collection",
+			"item": []
+		},
+		{
+			"name": "My Ecommerce Micro Service's Collection",
+			"item": []
+		},
+		{
+			"name": "My Ecommerce Monolith Collection",
+			"item": []
+		},
+		{
+			"name": "My Ecommerce Oauth2 PKCE Keycloak Security API Gateway Collection",
+			"item": []
+		},
+		{
+			"name": "Configuration Requests",
+			"item": [
+				{
+					"name": "build-info",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8085/build-info",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"build-info"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "refresh",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8085/actuator/refresh",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"actuator",
+								"refresh"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "encrypt",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "text/plain",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "Database production build server SERVER DB",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8086/encrypt",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8086",
+							"path": [
+								"encrypt"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "decrypt",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "AQC9wKtWFqDl5qeFmmi4Ijk83J+kLxvoPUrEIjOvSDA72Ewa1MVAXsw6uwrAIk188FSTEBZk1hjnbn3yoBMU8zCd/a4Rz5S3/5eAsalAD91531shtYREpX/OJPH2Xl/FOz9JZNkkJHa3kpjgKA7ODXlvqShAUDqeFSZukRqWrPTGa5KakFeh3s/0V4jXbWq401bBDBLqdpkNShkvdAgKD9wSRPEBUxNY+6kdQthb1XlM1nurg2AE7/Hgps1CXDY0m0Oto7z/Ie7AL38iTu3XQfxkuIeFltZeTObilKLHo3bGFjjC4lO6FGjgvuVdk8DGjODnbHljZ/srwY5ciTeTJjT9fVgreSj+SeLOz3T8nrqVs81k+mJs3Ok61irdDXeDSt2dtZuFHleNKFvLlIE5St3ANiUzX9nD/lLY2SIwSRtDFQ==",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8086/decrypt",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8086",
+							"path": [
+								"decrypt"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "configuration",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8086/ConfigManagement/dev",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8086",
+							"path": [
+								"ConfigManagement",
+								"dev"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "bus refresh",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8086/actuator/busrefresh",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8086",
+							"path": [
+								"actuator",
+								"busrefresh"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "bus refresh message order",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{HOST}}{{ORDER_PORT}}/ordermessage",
+							"host": [
+								"{{HOST}}{{ORDER_PORT}}"
+							],
+							"path": [
+								"ordermessage"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "bus refresh message product",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{HOST}}{{PRODUCT_PORT}}/productmessage",
+							"host": [
+								"{{HOST}}{{PRODUCT_PORT}}"
+							],
+							"path": [
+								"productmessage"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "bus refresh message user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{HOST}}{{USER_PORT}}/usermessage",
+							"host": [
+								"{{HOST}}{{USER_PORT}}"
+							],
+							"path": [
+								"usermessage"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

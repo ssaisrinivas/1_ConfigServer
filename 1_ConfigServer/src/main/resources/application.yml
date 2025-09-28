@@ -1,0 +1,69 @@
+spring:
+ application:
+  name: config-server
+ profiles:
+    active: native
+ cloud:
+  config:
+   server:
+     native:
+       search-locations: file:///D:\Eclipse-23-24\SpringBoot\EmbarkX\EcomApp-Containers\1_ConfigServer\src\main\resources\config
+#        search-locations: classpath:/config
+
+# rabbitmq:
+#  host: localhost
+#  port: 5672
+#  username: guest
+#  password: guest
+#
+#management:
+# endpoints:
+#   web:
+#    exposure:
+#     include: "*"
+
+server:
+ port: 8086
+
+logging:
+ level:
+  root: INFO
+ file:
+  name: logs/${spring.application.name}.log
+ logback:
+   rollingpolicy:
+     max-file-size: 5MB
+     max-history: 1
+
+# profiles:
+#  active: jdbc
+# datasource:
+#   url: jdbc:mysql://localhost:3306/configdb
+#   username: root
+#   password: root
+#   driver-class-name: com.mysql.cj.jdbc.Driver
+# cloud:
+#   config:
+#    server:
+#      jdbc:
+#       sql: "select prop_key, prop_value from properties where application=? and profile=? and label=?"
+#       default-label: main
+ 
+
+# cloud:
+#  config:
+#    server:
+#        git:
+#          uri: https://github.com/ssaisrinivas/app-configuration
+#          username: ${GIT_USER}
+#          password: ${GIT_TOKEN}
+
+ 
+#encrypt:
+# key: "0E329232EA6D0D73"
+    
+#encrypt:
+# key-store:
+#   location: config-server.jks
+#   password: mypass
+#   alias: config-server-key

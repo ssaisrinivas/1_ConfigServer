@@ -1,0 +1,19 @@
+build:
+   id: 102
+   version: 1.7.9
+   name: "Native QA-Production-Build"
+   type: "Native QA Build"
+ 
+
+#   spring:
+#    rabbitmq:
+#     host: localhost
+#     port: 5672
+#     username: guest
+#     password: guest
+#
+#   management:
+#    endpoints:
+#     web:
+#       exposure:
+#        include: "*"

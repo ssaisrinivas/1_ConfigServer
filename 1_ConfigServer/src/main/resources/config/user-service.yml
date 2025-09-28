@@ -1,0 +1,94 @@
+spring:
+ data:
+  mongodb:
+   database: userdb
+   host: localhost
+   port: 27017
+   authentication-database: admin
+
+logging:
+ level:
+   org:
+     springframework:
+          data:
+           mongodb:
+              core:
+                MongoTemplate: DEBUG   
+ file:
+  name: logs/${spring.application.name}.log
+
+ logback:
+   rollingpolicy:
+     max-filesize: 5MB
+     max-history: 1
+
+#Keycloak details
+keycloak:
+ admin:
+  username: sai22
+  password: sai22
+  server-url: http://localhost:8096
+  realm: My-Ecommerce-Application
+  client-id: admin-cli
+  client-uid: d61b3251-48ea-4228-8e6c-a92f9b8511f1
+
+# rabbitmq:
+#    host: localhost
+#    port: 5672
+#    username: guest
+#    password: guest
+#       
+#management:
+# endpoints:
+#   web:
+#    exposure:
+#     include: "*"
+
+server:
+  port: 8092
+  
+eureka:
+ client:
+  serviceUrl: 
+    defaultZone: http://localhost:8761/eureka
+  register-with-eureka: true
+  fetch-registry: true
+ 
+ 
+management:
+   endpoints:
+     web:
+      exposure:
+       include: "*" 
+   endpoint:
+    health:
+     show-details: always	   
+   health:
+    circuitbreakers:
+      enabled: true
+   tracing:
+     sampling:
+       probability: 1.0   
+
+
+#database: ${DATABASE}
+#  host: ${HOST}
+#  port: ${PORT}
+#  authentication-database: ${AUTHENTICATION-DATABASE}
+
+# Circuite breaker 
+
+resilience4j:
+ circuitbreaker:
+   instances:
+     ecomServiceBreaker:
+        registerHealthIndicator: true
+        slidingWindowType: count_based
+        slidingWindowSize: 10
+        minimumNumberOfCalls: 10
+        failureRateThreshold: 70
+        waitDurationInOpenState: 5s
+        permittedNumberOfCallsInHalfOpenState: 2
+        slowCallRateThreshold: 50
+        slowCallDurationThreshold: 10000
+        automaticTransitionFromOpenToHalfOpenEnabled: true
